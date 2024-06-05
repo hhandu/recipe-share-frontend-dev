@@ -1,3 +1,5 @@
+
+// this section is the main navigation layout of the website
 import { Button } from "./ui/button";
 
 

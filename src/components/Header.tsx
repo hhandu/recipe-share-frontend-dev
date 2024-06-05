@@ -1,3 +1,5 @@
+// this section is the header section of the website. In this section link is imported from react-router-dom . this section will show the mobile or main navigation of the header.
+
 import { Link } from "react-router-dom";
 import MobileNav from "../components/MobileNav";
 import MainNav from "./MainNav";

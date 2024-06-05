@@ -1,4 +1,4 @@
-// this section is the mobile view of the navbar 
+// this section is the mobile view of the navbar . Hamburger icon is imported from lucide-react. 
 
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "./ui/sheet";
