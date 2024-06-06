@@ -1,5 +1,6 @@
 import Banners from "@/components/Banners";
 import Header from "@/components/Header";
+import Footer from "@/components/footer";
 
 
 type Props ={
@@ -13,11 +14,13 @@ const Layout = ({children}:Props)=>{
          <Header></Header>
          <Banners></Banners>
          
+         
         <div className="container mx-auto flex-1 py-10">
 
             {children}
 
         </div>
+        <Footer></Footer>
     </div>)
 
 }
