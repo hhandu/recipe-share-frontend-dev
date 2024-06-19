@@ -9,7 +9,7 @@ const Banners = () => {
     return (
         <div className='bg-cream-100 mx-auto'>
             <h2 className='font-bold text-center text-3xl py-2 mx-auto text-blue-400'>Make <span className='text-orange-500'>mealtime a </span> Breeze</h2>
-            <Carousel className='w-full rounded-lg px-24'>
+            <Carousel className='w-full rounded-lg md:px-24'>
 
                 <div className='max-h-[650px]'> <img src={pic1} /></div>
                 <div className='max-h-[650px]'> <img src={pic2} /></div>
