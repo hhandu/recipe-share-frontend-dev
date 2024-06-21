@@ -11,7 +11,7 @@ const MainNav = () => {
           <Button><Link to="/recipe">Go to Recipe </Link></Button>
           <Button
           variant="ghost"
-          className="font-bold hover:text-orange-500 hover:bg-white"><Link to="/signUp"> SignUP</Link>
+          className="font-bold hover:text-orange-500 hover:bg-white"><Link to="/login"> Login</Link>
         </Button>
        
         </div>
