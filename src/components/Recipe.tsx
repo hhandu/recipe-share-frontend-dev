@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-
-import * as React from "react"
  
 import { Button } from "@/components/ui/button"
 import {
@@ -29,7 +27,7 @@ interface Recipe {
 }
 
 async function fetchRecipes(): Promise<Recipe[]> {
-  const response = await fetch("../../public/data.json"); // Adjust filename if needed
+  const response = await fetch("../../public/data.json");
   if (!response.ok) {
     throw new Error("Failed to fetch recipes");
   }
@@ -80,7 +78,7 @@ const RecipeCard = (recipe: Recipe) => {
 
 function RecipeList({ recipes }: { recipes: Recipe[] }) {
   return (
-    <div className="recipe-list grid grid-cols-3 gap-4"> {/* Apply grid styles */}
+    <div className="recipe-list grid grid-cols-3 gap-4"> 
       {recipes.map((recipe) => (
         <RecipeCard key={recipe.id} {...recipe} />
       ))}
@@ -90,7 +88,7 @@ function RecipeList({ recipes }: { recipes: Recipe[] }) {
 
 function Recipe() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [error, setError] = useState<string | null>(null); // Track errors
+  const [error, setError] = useState<string | null>(null); 
 
   useEffect(() => {
     const fetchData = async () => {
