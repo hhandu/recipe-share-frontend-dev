@@ -71,6 +71,7 @@ const LoginPage = () => {
                                     minLength: { value: 6, message: 'Password must be 6 characters or longer' }
                                 })}
                                  ></Input>
+                                 {errors.password && <p className='text-orange-500'>{errors.password?.message}</p>}
                             </div>
                     
                             

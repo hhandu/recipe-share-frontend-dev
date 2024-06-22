@@ -1,23 +1,12 @@
 import { useEffect, useState } from "react";
- 
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import Header from "./Header";
+import Footer from "./footer";
+
 interface Recipe {
   id: number;
   recipename: string;
@@ -27,7 +16,7 @@ interface Recipe {
 }
 
 async function fetchRecipes(): Promise<Recipe[]> {
-  const response = await fetch("../../public/data.json");
+  const response = await fetch("/data.json");
   if (!response.ok) {
     throw new Error("Failed to fetch recipes");
   }
@@ -35,13 +24,12 @@ async function fetchRecipes(): Promise<Recipe[]> {
   return data as Recipe[];
 }
 
-const RecipeCard = (recipe: Recipe) => {
+const RecipeCard = ({ recipename, description }: Recipe) => {
   return (
-    <div>
-         <Card className="w-[350px]">
+    <Card className="w-full md:w-[350px]">
       <CardHeader>
-        <CardTitle>{recipe.recipename}</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>{recipename}</CardTitle>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
@@ -67,53 +55,46 @@ const RecipeCard = (recipe: Recipe) => {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
-      </CardFooter>
     </Card>
-    </div>
   );
 };
 
-function RecipeList({ recipes }: { recipes: Recipe[] }) {
-  return (
-    <div className="recipe-list grid grid-cols-3 gap-4"> 
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} {...recipe} />
-      ))}
-    </div>
-  );
-}
+const RecipeList = ({ recipes }: { recipes: Recipe[] }) => (
+  <div className="recipe-list grid grid-cols-1 md:grid-cols-3 gap-4">
+    {recipes.map((recipe) => (
+      <RecipeCard key={recipe.id} {...recipe} />
+    ))}
+  </div>
+);
 
-function Recipe() {
+const Recipe = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [error, setError] = useState<string | null>(null); 
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const fetchedRecipes = await fetchRecipes();
         setRecipes(fetchedRecipes);
-      } catch (error) {
+      } catch {
         setError("Failed to load recipes. Please try again later.");
-        console.error(error);
       }
     };
-
     fetchData();
   }, []);
 
   return (
-    <div className="recipe-page">
-      <h1>Recipes</h1>
+    <div className="recipe-page p-4">
+      <Header />
+      <h1 className="text-2xl font-bold mb-4">Recipes</h1>
       {error ? (
         <p className="text-red-500">{error}</p>
       ) : (
         <RecipeList recipes={recipes} />
       )}
+      <Footer />
     </div>
   );
-}
+};
 
 export default Recipe;
