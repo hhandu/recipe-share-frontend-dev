@@ -2,6 +2,7 @@
 
 import HomePage from "@/Pages/HomePage";
 import LoginPage from "@/Pages/LoginPage";
+import SignupPage from "@/Pages/SignUpPage";
 
 
 import Recipe from "@/components/Recipe";
@@ -16,6 +17,9 @@ const AppRoutes = () => {
             <Route path="/" element={<Layout><HomePage/></Layout>}></Route>
             <Route path="/recipe" element={<Recipe></Recipe>}></Route>
             <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+            <Route path="/signup" element={<SignupPage></SignupPage>}></Route>
+
+
             <Route path="*" element={<Navigate to="/" />}></Route>
 
 
