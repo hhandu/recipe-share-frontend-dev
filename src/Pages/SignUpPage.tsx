@@ -11,6 +11,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import axios from 'axios'; // Import Axios for making HTTP requests
 
 interface IFormInputs {
     firstName: string;
@@ -20,13 +21,20 @@ interface IFormInputs {
     password: string;
 }
 
-const onSubmit: SubmitHandler<IFormInputs> = data => {
-    console.log(data);
-    // Prevent page reload by not calling any page navigation or refresh functions here
-};
-
 const SignupPage = () => {
     const { register, formState: { errors }, handleSubmit } = useForm<IFormInputs>();
+
+    const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+        try {
+            const response = await axios.post('https://recipe-share-api.vercel.app/auth/register/', data); // Adjust the endpoint based on your backend API
+            console.log('Response from backend:', response.data);
+            // Optionally, handle success (redirect, show success message, etc.)
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            // Handle error scenarios (show error message, log error, etc.)
+        }
+    };
+
     return (
         <div className="flex flex-col min-h-screen">
             <Header />
@@ -48,17 +56,11 @@ const SignupPage = () => {
                                     id="firstName"
                                     placeholder="Your first name"
                                     {...register("firstName", {
-                                        required: {
-                                            value: true,
-                                            message: 'First name is required',
-                                        },
-                                        minLength: {
-                                            value: 2,
-                                            message: 'First name must be at least 2 characters long',
-                                        }
+                                        required: 'First name is required',
+                                        minLength: { value: 2, message: 'First name must be at least 2 characters long' }
                                     })}
                                 />
-                                {errors.firstName && <p className='text-orange-500'>{errors.firstName?.message}</p>}
+                                {errors.firstName && <p className='text-orange-500'>{errors.firstName.message}</p>}
                             </div>
                             <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
                                 <Label htmlFor="lastName" className="py-2 font-xl font-serif">Last Name:</Label>
@@ -68,36 +70,25 @@ const SignupPage = () => {
                                     id="lastName"
                                     placeholder="Your last name"
                                     {...register("lastName", {
-                                        required: {
-                                            value: true,
-                                            message: 'Last name is required',
-                                        },
-                                        minLength: {
-                                            value: 2,
-                                            message: 'Last name must be at least 2 characters long',
-                                        }
+                                        required: 'Last name is required',
+                                        minLength: { value: 2, message: 'Last name must be at least 2 characters long' }
                                     })}
                                 />
-                                {errors.lastName && <p className='text-orange-500'>{errors.lastName?.message}</p>}
+                                {errors.lastName && <p className='text-orange-500'>{errors.lastName.message}</p>}
                             </div>
                             <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
                                 <Label htmlFor="gender" className="py-2 font-xl font-serif">Gender:</Label>
                                 <select
                                     className="py-2"
                                     id="gender"
-                                    {...register("gender", {
-                                        required: {
-                                            value: true,
-                                            message: 'Gender is required',
-                                        }
-                                    })}
+                                    {...register("gender", { required: 'Gender is required' })}
                                 >
                                     <option value="">Select gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
+                                    <option value="CUSTOM">other</option>
                                 </select>
-                                {errors.gender && <p className='text-orange-500'>{errors.gender?.message}</p>}
+                                {errors.gender && <p className='text-orange-500'>{errors.gender.message}</p>}
                             </div>
                             <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
                                 <Label htmlFor="email" className="py-2 font-xl font-serif">Email:</Label>
@@ -107,17 +98,14 @@ const SignupPage = () => {
                                     id="email"
                                     placeholder="Your email"
                                     {...register("email", {
-                                        required: {
-                                            value: true,
-                                            message: 'Email is required',
-                                        },
+                                        required: 'Email is required',
                                         pattern: {
                                             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                            message: 'Provide a valid email',
+                                            message: 'Provide a valid email'
                                         }
                                     })}
                                 />
-                                {errors.email && <p className='text-orange-500'>{errors.email?.message}</p>}
+                                {errors.email && <p className='text-orange-500'>{errors.email.message}</p>}
                             </div>
                             <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
                                 <Label htmlFor="password" className="py-2 font-xl font-serif">Password:</Label>
@@ -127,11 +115,11 @@ const SignupPage = () => {
                                     id="password"
                                     placeholder="Password"
                                     {...register("password", {
-                                        required: "Password is required",
+                                        required: 'Password is required',
                                         minLength: { value: 6, message: 'Password must be 6 characters or longer' }
                                     })}
                                 />
-                                {errors.password && <p className='text-orange-500'>{errors.password?.message}</p>}
+                                {errors.password && <p className='text-orange-500'>{errors.password.message}</p>}
                             </div>
                             <div className="flex justify-center mt-4">
                                 <button className="py-2 bg-orange-400 text-white rounded" type="submit">Sign Up</button>
