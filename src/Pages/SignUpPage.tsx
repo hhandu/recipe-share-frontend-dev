@@ -37,8 +37,8 @@ const SignupPage = () => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <Header />
-            <div className='flex flex-1 justify-center items-center'>
+            <Header/>
+            <div className='flex flex-1 justify-center items-center py-2'>
                 <Card className="bg-gray-100 rounded-lg text-lg">
                     <CardHeader>
                         <CardTitle className='text-center text-2xl font-bold font-serif'>

@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { Button } from "@/components/ui/button";
 
 interface IFormInputs {
     email: string;
@@ -20,7 +21,7 @@ interface IFormInputs {
 
 const LoginPage = () => {
     const { register, formState: { errors }, handleSubmit } = useForm<IFormInputs>();
-   // const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
         try {
@@ -80,11 +81,14 @@ const LoginPage = () => {
                                 />
                                 {errors.password && <p className='text-orange-500'>{errors.password?.message}</p>}
                             </div>
-                            <input className="py-2" type="submit" />
+                            <div className="flex justify-center mt-4">
+                                <Button className="py-2 my-2 bg-orange-400 text-white rounded" type="submit">login</Button>
+                            </div>
+
                         </form>
                     </CardContent>
                     <CardFooter>
-                        <p>New to <span className='text-orange-500'>Recipe</span><span className='text-blue-500'>Share</span> <Link className='text-sm' to="/signup">Create new Account</Link></p>
+                        <p>New to <span className='text-orange-500'>Recipe</span><span className='text-blue-500'>Share</span>. <Link className='text-sm text-orange-500' to="/signup">Create new Account</Link></p>
                     </CardFooter>
                 </Card>
             </div>
