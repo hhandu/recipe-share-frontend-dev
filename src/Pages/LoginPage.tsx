@@ -10,7 +10,7 @@ import Footer from '@/components/footer';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +21,7 @@ interface IFormInputs {
 
 const LoginPage = () => {
     const { register, formState: { errors }, handleSubmit } = useForm<IFormInputs>();
-    // const navigate = useNavigate();
+     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
         try {
@@ -29,7 +29,7 @@ const LoginPage = () => {
             const token = response.data.token;
             localStorage.setItem('token', token);
             console.log('Login successful', response.data);
-            //navigate('/your-recipes');
+            navigate('/your-recipes');
         } catch (error) {
             console.error('Error logging in:', error);
         }

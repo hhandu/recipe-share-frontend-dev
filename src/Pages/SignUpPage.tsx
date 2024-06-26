@@ -11,7 +11,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-import axios from 'axios'; // Import Axios for making HTTP requests
+import axios from 'axios'; 
 
 interface IFormInputs {
     firstName: string;
@@ -28,10 +28,10 @@ const SignupPage = () => {
         try {
             const response = await axios.post('https://recipe-share-api.vercel.app/auth/register/', data); // Adjust the endpoint based on your backend API
             console.log('Response from backend:', response.data);
-            // Optionally, handle success (redirect, show success message, etc.)
+            
         } catch (error) {
             console.error('Error submitting form:', error);
-            // Handle error scenarios (show error message, log error, etc.)
+            
         }
     };
 
