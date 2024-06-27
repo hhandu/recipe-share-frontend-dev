@@ -22,10 +22,14 @@ interface IFormInputs {
     categories: string;
     tags: string;
 }
+interface ICategory{
+    id: string;
+    description:string;
+}
 
 const YourRecipePage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>();
-    const [categories, setCategories] = useState<object[]>([]); 
+    const [categories, setCategories] = useState<ICategory[]>([]); 
 
     const fetchCategories = async () => {
         try {
