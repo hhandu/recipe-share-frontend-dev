@@ -20,6 +20,13 @@ const MobileNav = () => {
                         <Button className="w-full font-bold bg-orange-500 text-white">Login</Button>
                     </Link>
                 </SheetDescription>
+                <Separator />
+                <SheetDescription className="flex">
+                    <Link to="/recipe" className="flex-1">
+                        <Button className="w-full font-bold bg-orange-500 text-white">Recipe</Button>
+                    </Link>
+                </SheetDescription>
+
             </SheetContent>
         </Sheet>
     )
