@@ -1,3 +1,6 @@
+
+//overall layout of the page
+
 import Banners from "@/components/Banners";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";

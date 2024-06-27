@@ -1,3 +1,5 @@
+//this is the landing page of the website it has banner header some functions
+
 import { Button } from '@/components/ui/button';
 import pic4 from '../assets/pic 4.jpg'
 import { useNavigate } from 'react-router-dom';

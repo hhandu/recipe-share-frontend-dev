@@ -1,3 +1,6 @@
+
+// The purpose of this component is to render a mobile navigation menu using a sliding sheet.
+// It includes links to the login and recipe pages, styled with custom buttons.
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Separator } from "./ui/separator";

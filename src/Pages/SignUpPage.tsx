@@ -1,3 +1,6 @@
+
+// a new user can sign up. this page will show how to signup
+
 import {
     Card,
     CardContent,
@@ -26,7 +29,7 @@ const SignupPage = () => {
 
     const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
         try {
-            const response = await axios.post('https://recipe-share-api.vercel.app/auth/register/', data); // Adjust the endpoint based on your backend API
+            const response = await axios.post('https://recipe-share-api.vercel.app/auth/register/', data); 
             console.log('Response from backend:', response.data);
             
         } catch (error) {

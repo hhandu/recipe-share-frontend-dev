@@ -1,3 +1,6 @@
+// the purpose of the page is to create recipe page. 
+//it will fetch the recipe from the backend using api and show it to the frontend
+
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";

@@ -1,3 +1,7 @@
+// a user can create his or her own recipe thats the purpose of this page . 
+//after the successful login a user can create his or her own recipe here.
+
+
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -56,7 +60,7 @@ const YourRecipePage = () => {
         const payload = {
             ...data,
             ingredients: data.ingredients.split(',').map(ingredient => ingredient.trim()),
-            //categories: ['667a8be47160ce017daa2728'], 
+            
             categories: [data.categories],
             tags: data.tags.split(',').map(tag => tag.trim())
         };
