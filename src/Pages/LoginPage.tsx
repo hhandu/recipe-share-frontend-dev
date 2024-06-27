@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 interface IFormInputs {
     email: string;
@@ -21,7 +22,8 @@ interface IFormInputs {
 
 const LoginPage = () => {
     const { register, formState: { errors }, handleSubmit } = useForm<IFormInputs>();
-     const navigate = useNavigate();
+    const navigate = useNavigate();
+    const [loginError, setLoginError] = useState<string | null>(null);
 
     const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
         try {
@@ -29,9 +31,15 @@ const LoginPage = () => {
             const token = response.data.token;
             localStorage.setItem('token', token);
             console.log('Login successful', response.data);
+            setLoginError(null);
             navigate('/your-recipes');
         } catch (error) {
             console.error('Error logging in:', error);
+            if (axios.isAxiosError(error) && error.response) {
+                setLoginError(error.response.data.message || 'Login failed. Please check your credentials.');
+            } else {
+                setLoginError('An unexpected error occurred.');
+            }
         }
     };
 
@@ -81,14 +89,14 @@ const LoginPage = () => {
                                 />
                                 {errors.password && <p className='text-orange-500'>{errors.password?.message}</p>}
                             </div>
+                            {loginError && <p className='text-red-500'>{loginError}</p>}
                             <div className="flex justify-center mt-4">
-                                <Button className="py-2 my-2 bg-orange-400 text-white rounded" type="submit">login</Button>
+                                <Button className="py-2 my-2 bg-orange-400 text-white rounded" type="submit">Login</Button>
                             </div>
-
                         </form>
                     </CardContent>
                     <CardFooter>
-                        <p>New to <span className='text-orange-500'>Recipe</span><span className='text-blue-500'>Share</span>. <Link className='text-sm text-orange-500' to="/signup">Create new Account</Link></p>
+                        <p>New to <span className='text-orange-500'>Recipe</span><span className='text-blue-500'>Share</span>? <Link className='text-sm text-orange-500' to="/signup">Create new Account</Link></p>
                     </CardFooter>
                 </Card>
             </div>
