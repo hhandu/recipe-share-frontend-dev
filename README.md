@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# Food Recipe Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This project is a responsive web application designed as a landing page for food recipes. The application allows users to explore, create, and share their own recipes. The frontend is built using React and TypeScript, with styling provided by [ui.shadcn.com](https://ui.shadcn.com). For form handling, React Hook Form is utilized. The backend is connected to store and retrieve recipe data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Landing Page**: Displays a banner with a food image and a call-to-action button.
+- **User Authentication**: Login and Sign Up forms for user authentication.
+- **Recipe Creation**: Authenticated users can create their own recipes.
+- **Recipe Display**: Users can view their created recipes on a dedicated recipe page.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend**:
+  - React
+  - TypeScript
+  - Vite
+  - [ui.shadcn.com](https://ui.shadcn.com) for CSS and design
+  - freepik for images
+  - React Hook Form for form handling
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Backend**: Node, MongoDb, Mongoose
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/hhandu/recipe-share-frontend-dev.git
+   cd food-recipe-landing-page
